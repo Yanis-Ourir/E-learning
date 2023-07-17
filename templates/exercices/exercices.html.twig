@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Start404 - Exercices{% endblock %}
+
+{% block body %}
+    <section class="tips mt-16 m-4 flex justify-center">
+        <div>
+            <h1 class="text-3xl font-bold text-center m-4">Choix du <span class="text-sky-400">langage</span></h1>
+                <div class="text-lg">
+                    <p>Si c'est votre première expérience de code, voici ce que je vous préconise :</p>
+                    <p>Les langages HTML / CSS / JS fonctionnent ensemble, le CSS va agir sur l'HTML et le JS va agir sur l'HTML et le CSS (plus de détails dans leur page)</p>
+                    <p>Je  vous conseille donc de commencer par l'HTML ensuite le CSS et pour finir le JavaScript</p>
+                </div>
+        </div>
+    </section>
+
+    <section class="choose-your-language m-4 mt-10">
+        <div class="language-logo flex justify-around m-4">
+                    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                        <a href="{{path('app_html_exercices')}}" class="flex justify-center m-4">
+                            <img src="{{asset('assets/images/HTML-white-logo.png')}}" alt="html-logo" class="html-logo rounded-t-lg text-center"></a>
+                        </a>
+                            <div class="p-5">
+                                <a href="#">
+                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">La <span class="text-sky-400">structure</span> de votre page web</h5>
+                                </a>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Le langage HTML est utilisé pour créer et structurer des pages web en utilisant des balises pour définir le contenu et la mise en forme des éléments.</p>
+                                <a href="{{path('app_html_exercices')}}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Commencer
+                                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                    </svg>
+                                </a>
+                            </div>
+                    </div>  
+
+                     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                        <a href="{{path('app_css_exercices')}}" class="flex justify-center m-4">
+                            <img src="{{asset('assets/images/CSS-white-logo.png')}}" alt="css-logo" class="css-logo">
+                        </a>
+                            <div class="p-5">
+                                <a href="{{path('app_css_exercices')}}">
+                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Le <span class="text-sky-400">style</span> de votre page web</h5>
+                                </a>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Le langage CSS est utilisé pour styliser et mettre en forme les éléments d'une page web en contrôlant l'apparence, la disposition et les effets visuels.</p>
+                                <a href="{{path('app_css_exercices')}}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Commencer
+                                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                    </svg>
+                                </a>
+                            </div>
+                    </div>  
+
+                     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                        <a href="{{path('app_js_exercices')}}" class="flex justify-center m-4">
+                           <img src="{{asset('assets/images/JavaScript-white-logo.png')}}" alt="js-logo" class="js-logo">
+                        </a>
+                            <div class="p-5">
+                                <a href="{{path('app_js_exercices')}}">
+                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><span class="text-sky-400">L'interaction</span> avec votre page web</h5>
+                                </a>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Le langage JavaScript est utilisé pour rendre les pages web interactives et dynamiques en ajoutant des fonctionnalités et des comportements tels que des animations...</p>
+                                <a href="{{path('app_js_exercices')}}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Commencer
+                                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                    </svg>
+                                </a>
+                            </div>
+                    </div>  
+
+		</div>
+    </section>
+
+    <section>
+
+
+    </section>
+
+{% endblock %}

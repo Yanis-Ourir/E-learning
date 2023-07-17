@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Oswald", sans-serif;
+}
+
+/* NAVBAR */
+
+/* BODY HOME */
+
+.hero-banner {
+  margin-top: 10%;
+}
+
+.image-hero-banner {
+  width: 800px;
+  height: 100%;
+}
+
+h1 {
+  font-family: "Anton", sans-serif;
+}
+
+h1 span {
+  font-family: "Anton", sans-serif;
+}
+
+h2 {
+  font-family: "Anton", sans-serif;
+}
+
+h2 span {
+  font-family: "Anton", sans-serif;
+}
+
+.language-logo img {
+  width: auto;
+  height: 200px;
+}
+
+.alert-error-login {
+  width: 90%;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: rgb(241, 105, 105);
+  border-color: 1px solid rgb(223, 83, 83);
+  border-radius: 5px;
+  color: rgb(128, 18, 18);
+}
+
+.alert-success-registration {
+  width: 90%;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: rgb(142, 255, 142);
+  border-color: 1px solid rgb(94, 230, 105);
+  border-radius: 5px;
+  color: rgb(17, 82, 11);
+}
+
+.login-form {
+  width: 50rem;
+  height: 25rem;
+}
+
+.CSS-logo {
+  width: 200px;
+  height: auto;
+}
+
+
