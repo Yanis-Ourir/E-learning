@@ -37,6 +37,9 @@ class Exercice
     #[ORM\Column(length: 255)]
     private ?string $difficulty = null;
 
+    #[ORM\ManyToOne(inversedBy: 'exercices')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -134,6 +137,18 @@ class Exercice
     public function setDifficulty(string $difficulty): self
     {
         $this->difficulty = $difficulty;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -18,7 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\NotBlank()]
     #[Assert\Email()]
@@ -38,6 +40,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\OneToOne(mappedBy: 'id_user', cascade: ['persist', 'remove'])]
+    private ?Profil $profil = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Exercice::class)]
+    private Collection $exercices;
+
+    public function __construct()
+    {
+        $this->exercices = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -117,6 +130,53 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getProfil(): ?Profil
+    {
+        return $this->profil;
+    }
+
+    public function setProfil(Profil $profil): self
+    {
+        // set the owning side of the relation if necessary
+        if ($profil->getIdUser() !== $this) {
+            $profil->setIdUser($this);
+        }
+
+        $this->profil = $profil;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Exercice>
+     */
+    public function getExercices(): Collection
+    {
+        return $this->exercices;
+    }
+
+    public function addExercice(Exercice $exercice): self
+    {
+        if (!$this->exercices->contains($exercice)) {
+            $this->exercices->add($exercice);
+            $exercice->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExercice(Exercice $exercice): self
+    {
+        if ($this->exercices->removeElement($exercice)) {
+            // set the owning side to null (unless already changed)
+            if ($exercice->getUser() === $this) {
+                $exercice->setUser(null);
+            }
+        }
 
         return $this;
     }

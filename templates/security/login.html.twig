@@ -4,19 +4,16 @@
 
 {% block body %}
 
-<section class="mt-24">
-    <h1 class="text-3xl font-bold text-center m-4">Formulaire de <span class="text-sky-400">Connexion</span></h1>
-</section>
 
-<section class="w-36 flex items-center justify-center mt-4 mb-4 bg-gray-50 dark:bg-gray-900">
+<section class="flex items-center justify-center mt-24 mb-4">
   <div class="px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <a href="{{path('app_home')}}" class="flex items-center justify-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white mt-4">
+      <a href="{{path('app_home')}}" class="flex items-center justify-center mb-6 text-2xl font-semibold text-gray-900 mt-4">
           <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo">
           Start404    
       </a>
-      <div class="login-form p-4 m-4 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <div class="login-form p-4 m-4 rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 class="text-xl font-bold dark:text-sky-900 md:text-2xl">
+              <h1 class="text-xl font-bold text-white md:text-2xl">
                   Connexion à votre compte
               </h1>
 
@@ -33,27 +30,27 @@
                 {% endif %}
               <form class="space-y-4 md:space-y-6" action="{{path('app_login')}}" method='post'>
                   <div class="m-4">
-                      <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                      <input type="email" name="_username" id="username" class="p-2 dark:bg-gray-900 dark:text-gray-900 text-sm focus:ring-blue-500 dark:focus:border-blue-500 block w-full dark:placeholder-gray-400 text-white" placeholder="exemple@gmail.com" value="{{last_username}}"required>
+                      <label for="username" class="block mb-2 text-sm font-medium text-white">Email</label>
+                      <input type="email" name="_username" id="username" class="p-2 bg-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full placeholder-gray-400 text-white" placeholder="exemple@gmail.com" value="{{last_username}}"required>
                   </div>
                   <div class="m-4">
-                      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mot de passe</label>
-                      <input type="password" name="_password" id="password" placeholder="••••••••" class="p-2 dark:bg-gray-900 dark:text-gray-900 text-sm focus:ring-blue-500 dark:focus:border-blue-500 block w-full dark:placeholder-gray-400 text-white" placeholder="exemple@gmail.com" required>
+                      <label for="password" class="block mb-2 text-sm font-medium text-white">Mot de passe</label>
+                      <input type="password" name="_password" id="password" placeholder="••••••••" class="p-2 bg-gray-900 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full placeholder-gray-400 text-white" placeholder="exemple@gmail.com" required>
                   </div>
                   <div class="flex items-center justify-between m-4">
                       <div class="flex items-start">
                           <div class="flex items-center h-5">
-                            <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800">
+                            <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border rounded focus:ring-3 bg-gray-700 border-gray-600 focus:ring-primary-600 ring-offset-gray-800">
                           </div>
                           <div class="ml-3 text-sm">
-                            <label for="remember" class="text-gray-500 dark:text-gray-300">Se souvenir</label>
+                            <label for="remember" class="text-gray-500">Se souvenir</label>
                           </div>
                       </div>
-                      <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Mot de passe oublié ?</a>
+                      <a href="#" class="text-sm font-medium hover:underline text-gray-500 hover:text-sky-500">Mot de passe oublié ?</a>
                   </div>
                   <button type="submit" class="w-1/2 m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Se connecter</button>
-                  <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                      Vous n'avez pas encore de compte? <a href="{{path('app_registration')}}" class="font-medium text-primary-600 hover:underline dark:text-primary-500">S'inscrire</a>
+                  <p class="text-sm font-light text-gray-400">
+                      Vous n'avez pas encore de compte? <a href="{{path('app_registration')}}" class="font-medium hover:underline text-primary-500 hover:text-sky-500">S'inscrire</a>
                   </p>
               </form>
           </div>
