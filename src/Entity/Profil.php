@@ -6,9 +6,12 @@ use App\Repository\ProfilRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProfilRepository::class)]
-class Profil
+#[Vich\Uploadable]
+class Profil implements \Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,21 +21,35 @@ class Profil
     #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $profil_picture = null;
+    #[Vich\UploadableField(mapping: 'profil_image', fileNameProperty: 'imageName', size: 'imageSize')]
+    private ?File $imageFile = null;
+  
+    #[ORM\Column(nullable: true)]
+    private ?string $imageName = null;
+  
+    #[ORM\Column(nullable: true)]
+    private ?int $imageSize = null;
 
     #[ORM\Column]
     private ?int $score = null;
 
     #[ORM\OneToOne(inversedBy: 'profil', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $id_user = null;
+    private ?User $user = null;
 
     #[ORM\ManyToMany(targetEntity: Exercice::class)]
     private Collection $exercices;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?ToDoList $to_do_list = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    
 
     public function __construct()
     {
@@ -68,6 +85,60 @@ class Profil
         return $this;
     }
 
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageSize(?int $imageSize): void
+    {
+        $this->imageSize = $imageSize;
+    }
+
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->imageName,
+
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+
+        ) = unserialize($serialized);
+    }
+
     public function getScore(): ?int
     {
         return $this->score;
@@ -82,12 +153,12 @@ class Profil
 
     public function getIdUser(): ?User
     {
-        return $this->id_user;
+        return $this->user;
     }
 
-    public function setIdUser(User $id_user): self
+    public function setIdUser(User $user): self
     {
-        $this->id_user = $id_user;
+        $this->user = $user;
 
         return $this;
     }
@@ -124,6 +195,30 @@ class Profil
     public function setToDoList(?ToDoList $to_do_list): self
     {
         $this->to_do_list = $to_do_list;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

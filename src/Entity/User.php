@@ -41,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\OneToOne(mappedBy: 'id_user', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Profil $profil = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Exercice::class)]
@@ -151,6 +151,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    
     /**
      * @return Collection<int, Exercice>
      */

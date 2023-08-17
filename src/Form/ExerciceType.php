@@ -79,13 +79,31 @@ class ExerciceType extends AbstractType
             ])
             ->add('codepen_link', TextType::class,[
             'attr' => [
-                'class' => 'p-2 bg-gray-900 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full placeholder-gray-400',
+                'class' => 'p-2 bg-gray-900 text-white text-sm focus:ring-blue-500 focus:border-blue-500 block w-full placeholder-gray-400',
             ],
             'label' => 'Lien du codepen',
             'label_attr' => [
                 'class' => 'block mb-2 text-sm font-medium text-white mt-4'
             ],
             ])
+            ->add('codepen_slug', TextType::class,[
+                'attr' => [
+                    'class' => 'p-2 bg-gray-900 text-white text-sm focus:ring-blue-500 focus:border-blue-500 block w-full placeholder-gray-400',
+                ],
+                'label' => 'Slug du codepen',
+                'label_attr' => [
+                    'class' => 'block mb-2 text-sm font-medium text-white mt-4'
+                ],
+            ])
+            ->add('codepen_title', TextType::class,[
+                    'attr' => [
+                        'class' => 'p-2 bg-gray-900 text-white text-sm focus:ring-blue-500 focus:border-blue-500 block w-full placeholder-gray-400',
+                    ],
+                    'label' => 'Titre de votre codepen',
+                    'label_attr' => [
+                        'class' => 'block mb-2 text-sm font-medium text-white mt-4'
+                    ],
+                ])
             ->add('difficulty', TextType::class, [
                 'attr' => [
                     'class' => 'p-2 bg-gray-900 text-sm 

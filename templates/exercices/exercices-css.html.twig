@@ -5,10 +5,10 @@
 
 {% block body %}
 	<section class="language-introduction mt-16">
-		<a href="https://developer.mozilla.org/fr/docs/Web/HTML" class="flex flex-col items-center border shadow md:flex-row md:max-w-xl hover:bg-gray-100 border-gray-700 bg-gray-800 hover:bg-gray-700" target="_blank">
-<img class="rounded-lg shadow-md bg-gray-800 border-gray-700 p-4 CSS-logo" src="{{asset('assets/images/CSS-white-logo.png')}}" alt="CSS-logo">
+		<a href="https://developer.mozilla.org/fr/docs/Web/HTML" class="flex w-100 items-center border shadow md:flex-row hover:bg-gray-100 border-gray-700 bg-gray-800 hover:bg-gray-700" target="_blank">
+			<img class="rounded-lg shadow-md bg-gray-800 border-gray-700 p-4 CSS-logo" src="{{asset('assets/images/CSS-white-logo.png')}}" alt="CSS-logo">
 
-			<div class="flex flex-col justify-between p-4 leading-normal">
+			<div class="flex flex-col justify-center p-4 leading-normal">
 				<h5 class="mb-2 text-2xl font-bold tracking-tight text-white">CSS une feuille de
 					<span class="text-sky-400">style</span>
 				</h5>
@@ -49,8 +49,8 @@
 				<tbody class="m-4">
 					{% for exercice in exercices %}
 						<tr class="m-4 bg-gray-800">
-							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-								<a href="{{ path('css.exercice', {id: exercice.id}) }}">{{exercice.title}}</a>
+							<th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+								<a href="{{ path('css.exercice', {id: exercice.id}) }}" class="hover:text-blue-500">{{exercice.title}}</a>
 							</th>
 
 							<td class="px-6 py-4">
@@ -58,43 +58,15 @@
 							</td>
 
 							<td class="px-6 py-4">
-								{{exercice.description}}
+								{{exercice.difficulty}}
 							</td>
 
 							<td class="px-6 py-4">
-								Supprimer/Ajouter
+								<button><i class="fa-solid fa-list-check"></i></button>
 							</td>
 
 						</tr>
 					{% endfor %}
-					<tr class="bg-gray-800 m-4">
-						<th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
-							CSS - Exercice 2
-						</th>
-						<td class="px-6 py-4">
-							Gérer la taille d'un élément HTML
-						</td>
-						<td class="px-6 py-4">
-							Facile
-						</td>
-						<td class="px-6 py-4">
-							Supprimer/Ajouter
-						</td>
-					</tr>
-					<tr class="bg-gray-800">
-						<th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
-							CSS - Exercice 3
-						</th>
-						<td class="px-6 py-4">
-							Ajouter des liens à votre page web
-						</td>
-						<td class="px-6 py-4">
-							Facile
-						</td>
-						<td class="px-6 py-4">
-							Supprimer/Ajouter
-						</td>
-					</tr>
 				</tbody>
 			</table>
 		</div>

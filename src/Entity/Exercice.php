@@ -40,6 +40,13 @@ class Exercice
     #[ORM\ManyToOne(inversedBy: 'exercices')]
     private ?User $user = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $codepen_slug = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $codepen_title = null;
+    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -149,6 +156,30 @@ class Exercice
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCodepenSlug(): ?string
+    {
+        return $this->codepen_slug;
+    }
+
+    public function setCodepenSlug(string $codepen_slug): self
+    {
+        $this->codepen_slug = $codepen_slug;
+
+        return $this;
+    }
+
+    public function getCodepenTitle(): ?string
+    {
+        return $this->codepen_title;
+    }
+
+    public function setCodepenTitle(string $codepen_title): self
+    {
+        $this->codepen_title = $codepen_title;
 
         return $this;
     }

@@ -20,17 +20,18 @@ class ExercicesController extends AbstractController
     }
 
     #[Route('/exercices/html', name: 'app_html_exercices')]
-    public function html(): Response
+    public function html(ExerciceRepository $exerciceRepository, ?int $id): Response
     {
+        $exercices = $exerciceRepository->findBy(['category' => 'HTML']);
         return $this->render('exercices/exercices-html.html.twig', [
-            'controller_name' => 'ExercicesController',
+            'exercices' => $exercices,
         ]);
     }
 
     #[Route('/exercices/css', name: 'app_css_exercices')]
     public function css(ExerciceRepository $exerciceRepository, ?int $id): Response
     {
-        $exercices = $exerciceRepository->findAll();
+        $exercices = $exerciceRepository->findBy(['category' => 'CSS']);
         return $this->render('exercices/exercices-css.html.twig', [
             'exercices' => $exercices,
         ]);
@@ -39,16 +40,18 @@ class ExercicesController extends AbstractController
     #[Route('/exercices/js', name: 'app_js_exercices')]
     public function javascript(): Response
     {
+        $exercices = $exerciceRepository->findBy(['category' => 'JS']);
         return $this->render('exercices/exercices-js.html.twig', [
-            'controller_name' => 'ExercicesController',
+            'exercices' => $exercices,
         ]);
     }
 
-    #[Route('/exercices/html/{id}', name: 'html.exercices')]
-    public function exerciceHtml(?int $id = null): Response
+    #[Route('/exercices/html/{id}', name: 'html.exercice')]
+    public function exerciceHtml(ExerciceRepository $exerciceRepository, ?int $id = null): Response
     {
+        $exercice = $exerciceRepository->findOneBy(['id' => $id]);
         return $this->render('exercices/repository-html.html.twig', [
-            'controller_name' => 'ExercicesController',
+            'exercice'=> $exercice,
         ]);
     }
 

@@ -11,6 +11,7 @@
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 			<link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
 			<link rel="stylesheet" href="../assets/styles/app.css">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.css" rel="stylesheet" />
@@ -28,15 +29,26 @@
   </a>
     <div class="flex md:order-2">
     {% if app.user %}
+   
         <div class="flex items-center md:order-2">
             <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
-                <img class="w-8 h-8 rounded-full" src="{{asset('assets/images/user-pic.png')}}" alt="user photo">
+                 {% set userInfo = users.getUserInfo() %}
+               
+            {% if userInfo is not null %} 
+                <img class="w-8 h-8 rounded-full" src="{{ vich_uploader_asset(userInfo.profilUser, 'imageFile')}}" alt="profil_picture">  
+            {% else %}
+                <img class="w-8 h-8 rounded-full" src="{{ asset('assets/images/user-pic.png') }}" alt="profil_picture">
+            {% endif %}
             </button>
             <!-- Dropdown menu -->
             <div class="z-50 hidden my-4 text-base list-none divide-y rounded-lg shadow bg-gray-700 divide-gray-600" id="user-dropdown">
                 <div class="px-4 py-3">
-                <span class="block text-sm text-white">Nom utilisateur</span>
+                {% if userInfo is not null %}
+                <span class="block text-sm text-white">{{userInfo.user_pseudo}}</span>
+                {% else %}
+                <span class="block text-sm text-white">User</span>
+                {% endif %}
                 <span class="block text-sm truncate text-gray-400">{{app.user.email}}</span>
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
