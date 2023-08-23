@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Start404 - Exercices{% endblock %}
+
+{% block body %}
+
+<section class="language-introduction mt-16">
+        <a href="https://developer.mozilla.org/fr/docs/Web/{{slug}}" class="flex items-center shadow flex-row w-100 hover:bg-gray-100 border-gray-700 bg-gray-800 hover:bg-gray-700" target="_blank">
+            
+		{% if slug == 'html' %}
+			<img class="max-w-sm rounded-lg shadow-md bg-gray-800 border-gray-700 p-4"  src="{{asset('assets/images/HTML-white-logo.png')}}" alt="HTML-logo">
+            <div class="flex flex-col justify-between p-4 leading-normal">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">HTML un langage de <span class="text-sky-400">balisage</span></h5>
+                <p class="mb-3 font-normal text-gray-400">Très simple à prendre en main et à mettre en place, le langage HTML gère le texte de votre site. (Titre, liens, articles, paragraphes...)</p>
+
+			{% elseif slug == 'css' %}
+				<img class="rounded-lg shadow-md bg-gray-800 border-gray-700 p-4 CSS-logo" src="{{asset('assets/images/CSS-white-logo.png')}}" alt="CSS-logo">
+				<div class="flex flex-col justify-between p-4 leading-normal">
+					<h5 class="mb-2 text-2xl font-bold tracking-tight text-white">CSS une feuille de <span class="text-sky-400">style</span></h5>
+					<p class="mb-3 font-normal text-gray-400">Le CSS est un langage qui va appliquer du style a votre page web. Facile à prendre en main et très visuel.<br>Très facile a mettre en place, il interagit directement avec votre code HTML.</p>
+
+					{% elseif slug == 'js' %}
+						<img class="max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 p-4"  src="{{asset('assets/images/JavaScript-white-logo.png')}}" alt="JS-logo">
+            			<div class="flex flex-col justify-between p-4 leading-normal">
+							<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">JavaScript un langage de programmation de <span class="text-sky-400">scripts</span></h5>
+							<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Le JavaScript, est le seul de nos 3 langages qui est un vrai langage de programmation.<br>
+							Un peu plus difficile a prendre en main que le CSS et L'HTML.<br>
+							De plus, avec  le JS il est possible d'interagir sur l'HTML tout comme sur le CSS.</br> 
+							Ne vous en faites pas, il reste tout de même accessible et très compréhensible 
+							lorsque l'on souhaite juste ajouter des éléments interactifs à notre page web.</p>
+							</p>
+		{% endif %}
+            </div>
+        </a>
+</section>
+
+<section class="html-exercices">
+		<h1 class="text-3xl font-bold text-center m-4">Nos exercices<span class="text-sky-400 uppercase">
+				{{slug}}</span>
+		</h1>
+
+
+		<div class="mb-8">
+			<table class="w-full text-xl text-left text-gray-400 bg-gray-900">
+				<thead class="text-xs uppercase text-gray-400">
+					<tr>
+						<th scope="col" class="px-6 py-3">
+							Exercices
+						</th>
+						<th scope="col" class="px-6 py-3">
+							Objectifs
+						</th>
+						<th scope="col" class="px-6 py-3">
+							Difficulté
+						</th>
+
+						<th scope="col" class="px-6 py-3">
+							Actions
+						</th>
+					</tr>
+				</thead>
+				<tbody class="m-4">
+					{% for exercice in exercices %}
+						<tr class="m-4 bg-gray-800">
+							<th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+								<a href="{{ path('app_repository_exercice', {slugExercice: slug, id: exercice.id}) }}" class="hover:text-blue-500">{{exercice.title}}</a>
+							</th>
+
+							<td class="px-6 py-4">
+								{{exercice.statement}}
+							</td>
+
+							<td class="px-6 py-4">
+								{{exercice.description}}
+							</td>
+
+							<td class="px-6 py-4">
+								<button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="dropdownDotsHorizontal" class="inline-flex items-center p-2 text-sm font-medium text-center rounded-lg  focus:ring-4 focus:outline-none text-white bg-gray-800 hover:bg-gray-700 focus:ring-gray-600" type="button"> 
+									<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+										<path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+									</svg>
+								</button>
+
+									<!-- Dropdown menu -->
+								<div id="dropdownDotsHorizontal" class="z-10 hidden divide-y divide-gray-100 rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
+									<ul class="py-2 text-sm text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
+									{% if app.user.profil.toDoList is not null %}
+									<li>
+										<a href="{{path('add_to-do-list', {id_exercice: exercice.id, id_toDoList: app.user.profil.toDoList.id})}}" class="block px-4 py-2 hover:bg-gray-600 hover:text-white">Ajouter à {{ app.user.profil.todolist.name }}</a>
+									</li>
+									{% else %}
+									<li>
+										<a href="{{path('app_profil', {id: app.user.id})}}" class="block px-4 py-2 hover:bg-gray-600 hover:text-white">Créer votre liste</a>
+									</ul>
+									{% endif %}
+								</div>
+							</td>
+
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+
+
+
+
+
+</section>
+
+{% endblock %}

@@ -41,6 +41,7 @@ class Profil implements \Serializable
     private Collection $exercices;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(onDelete: 'cascade')]
     private ?ToDoList $to_do_list = null;
 
     #[ORM\Column]
@@ -69,18 +70,6 @@ class Profil implements \Serializable
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
-
-        return $this;
-    }
-
-    public function getProfilPicture(): ?string
-    {
-        return $this->profil_picture;
-    }
-
-    public function setProfilPicture(?string $profil_picture): self
-    {
-        $this->profil_picture = $profil_picture;
 
         return $this;
     }

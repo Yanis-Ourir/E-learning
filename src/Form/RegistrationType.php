@@ -19,14 +19,14 @@ class RegistrationType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 shadow-sm-light',
                     'minlength' => '2',
                     'maxlength' => '180',
                     'placeholder' => 'example@gmail.com',
                 ],
                 'label' => 'Email',
                 'label_attr' => [
-                    'class' => 'form-label',
+                    'class' => 'block mb-2 text-sm font-medium text-white',
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
@@ -39,16 +39,22 @@ class RegistrationType extends AbstractType
                 'type' => PasswordType::class,
                 'first_options' => [
                     'label' => 'Mot de passe',
+                    'label_attr' => [
+                        'class' => 'mt-4 block mb-2 text-sm font-medium text-white',
+                    ],
                     'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 shadow-sm-light',
                     'minlength' =>  '2',
                     'maxlength' => '150',
                 ]
                 ],
                 'second_options' => [
                     'label' => 'Confirmation du mot de passe',
+                    'label_attr' => [
+                        'class' => 'mt-4 block mb-2 text-sm font-medium text-white',
+                    ],
                     'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 shadow-sm-light',
                     'minlength' =>  '2',
                     'maxlength' => '150',
                 ]
@@ -57,7 +63,7 @@ class RegistrationType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary',
+                    'class' => 'text-white mt-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800',
                 ],
                 'label' => "S'inscrire"
             ])

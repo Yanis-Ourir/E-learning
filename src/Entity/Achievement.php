@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\AchievementListRepository;
+use App\Repository\AchievementRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AchievementListRepository::class)]
-class AchievementList
+#[ORM\Entity(repositoryClass: AchievementRepository::class)]
+class Achievement
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,6 +18,9 @@ class AchievementList
 
     #[ORM\Column(length: 255)]
     private ?string $achievement_icon = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $achievement_description = null;
 
     public function getId(): ?int
     {
@@ -44,6 +47,18 @@ class AchievementList
     public function setAchievementIcon(string $achievement_icon): self
     {
         $this->achievement_icon = $achievement_icon;
+
+        return $this;
+    }
+
+    public function getAchievementDescription(): ?string
+    {
+        return $this->achievement_description;
+    }
+
+    public function setAchievementDescription(string $achievement_description): self
+    {
+        $this->achievement_description = $achievement_description;
 
         return $this;
     }

@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Exercice;
 use App\Repository\ExerciceRepository;
+use App\Repository\ToDoListRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,61 +16,57 @@ class ExercicesController extends AbstractController
     #[Route('/exercices', name: 'app_exercices')]
     public function index(): Response
     {
-        return $this->render('exercices/exercices.html.twig', [
-            'controller_name' => 'ExercicesController',
-        ]);
+        return $this->render('exercices/exercices.html.twig');
     }
 
-    #[Route('/exercices/html', name: 'app_html_exercices')]
-    public function html(ExerciceRepository $exerciceRepository, ?int $id): Response
+    /**
+     * $slug = ['HTML', 'CSS', 'JS']
+     * Le slug est défini lors du clic de l'utilisateur, il affichera les informations correspondantes.
+     */
+    #[Route('/exercices/{slug}', name: 'app_category_exercice')]
+    public function category(ExerciceRepository $exerciceRepository, ?string $slug = null): Response
     {
-        $exercices = $exerciceRepository->findBy(['category' => 'HTML']);
-        return $this->render('exercices/exercices-html.html.twig', [
+        $exercices = $exerciceRepository->findBy(['category' => $slug]);
+        return $this->render('exercices/exercice-category.html.twig', [
             'exercices' => $exercices,
+            'slug' => $slug
         ]);
     }
 
-    #[Route('/exercices/css', name: 'app_css_exercices')]
-    public function css(ExerciceRepository $exerciceRepository, ?int $id): Response
-    {
-        $exercices = $exerciceRepository->findBy(['category' => 'CSS']);
-        return $this->render('exercices/exercices-css.html.twig', [
-            'exercices' => $exercices,
-        ]);
-    }
-
-    #[Route('/exercices/js', name: 'app_js_exercices')]
-    public function javascript(): Response
-    {
-        $exercices = $exerciceRepository->findBy(['category' => 'JS']);
-        return $this->render('exercices/exercices-js.html.twig', [
-            'exercices' => $exercices,
-        ]);
-    }
-
-    #[Route('/exercices/html/{id}', name: 'html.exercice')]
-    public function exerciceHtml(ExerciceRepository $exerciceRepository, ?int $id = null): Response
+    #[Route('/exercices/{slugExercice}/{id}', name: 'app_repository_exercice')]
+    public function exercice(ExerciceRepository $exerciceRepository, 
+    ?int $id = null, 
+    ?string $slugExercice = null
+    ): Response
     {
         $exercice = $exerciceRepository->findOneBy(['id' => $id]);
-        return $this->render('exercices/repository-html.html.twig', [
+        return $this->render('exercices/exercice-repository.html.twig', [
             'exercice'=> $exercice,
+            'slug' => $slugExercice
         ]);
     }
 
-    #[Route('/exercices/css/{id}', name: 'css.exercice')]
-    public function exerciceCss(ExerciceRepository $exerciceRepository, ?int $id = null): Response
-    {
-        $exercice = $exerciceRepository->findOneBy(['id' => $id]);
-        return $this->render('exercices/repository-css.html.twig', [
-            'exercice'=> $exercice,
-        ]);
-    }
+    #[Route('/exercices/add-todolist/{id_exercice}/{id_toDoList}', name: 'add_to-do-list')]
+    public function addExerciceInToDoList(
+    ExerciceRepository $exerciceRepository,
+    ToDoListRepository $toDoListRepository,
+    EntityManagerInterface $entityManagerInterface,
+    Request $request,
+    ?int $id_exercice = null, 
+    ?int $id_toDoList = null
+    ) : Response {
+        $exercice = $exerciceRepository->findOneBy(['id' => $id_exercice]);
+        $toDoList = $toDoListRepository->findOneBy(['id' => $id_toDoList]);
 
-    #[Route('/exercices/js/{id}', name: 'js.exercices')]
-    public function exerciceJs(?int $id = null): Response
-    {
-        return $this->render('exercices/repository-js.html.twig', [
-            'controller_name' => 'ExercicesController',
-        ]);
+        $toDoList->addExercice($exercice);
+
+        $entityManagerInterface->persist($toDoList);
+        $entityManagerInterface->flush();
+
+        
+        $route = $request->headers->get('referer');
+
+
+        return $this->redirect($route);
     }
 }

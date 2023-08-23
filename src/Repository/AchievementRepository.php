@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\AchievementList;
+use App\Entity\Achievement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<AchievementList>
+ * @extends ServiceEntityRepository<Achievement>
  *
- * @method AchievementList|null find($id, $lockMode = null, $lockVersion = null)
- * @method AchievementList|null findOneBy(array $criteria, array $orderBy = null)
- * @method AchievementList[]    findAll()
- * @method AchievementList[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Achievement|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Achievement|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Achievement[]    findAll()
+ * @method Achievement[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AchievementListRepository extends ServiceEntityRepository
+class AchievementRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, AchievementList::class);
+        parent::__construct($registry, Achievement::class);
     }
 
-    public function save(AchievementList $entity, bool $flush = false): void
+    public function save(Achievement $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class AchievementListRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(AchievementList $entity, bool $flush = false): void
+    public function remove(Achievement $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class AchievementListRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return AchievementList[] Returns an array of AchievementList objects
+//     * @return Achievement[] Returns an array of Achievement objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class AchievementListRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?AchievementList
+//    public function findOneBySomeField($value): ?Achievement
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

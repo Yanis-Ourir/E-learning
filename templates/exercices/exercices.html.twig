@@ -17,7 +17,7 @@
     <section class="choose-your-language m-4 mt-10">
         <div class="language-logo flex justify-around m-4">
                     <div class="max-w-sm border rounded-lg shadow-md bg-gray-800 border-gray-700">
-                        <a href="{{path('app_html_exercices')}}" class="flex justify-center m-4">
+                        <a href="{{path('app_category_exercice', {slug: 'html'} )}}" class="flex justify-center m-4">
                             <img src="{{asset('assets/images/HTML-white-logo.png')}}" alt="html-logo" class="html-logo rounded-t-lg text-center"></a>
                         </a>
                             <div class="p-5">
@@ -25,7 +25,7 @@
                                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">La <span class="text-sky-400">structure</span> de votre page web</h5>
                                 </a>
                                 <p class="mb-3 font-normal text-gray-400">Le langage HTML est utilisé pour créer et structurer des pages web en utilisant des balises pour définir le contenu et la mise en forme des éléments.</p>
-                                <a href="{{path('app_html_exercices')}}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <a href="{{path('app_category_exercice', {slug: 'html'} )}}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Commencer
                                     <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -35,15 +35,15 @@
                     </div>  
 
                      <div class="max-w-sm border rounded-lg shadow-md bg-gray-800 border-gray-700">
-                        <a href="{{path('app_css_exercices')}}" class="flex justify-center m-4">
+                        <a href="{{path('app_category_exercice', {slug: 'css'} )}}" class="flex justify-center m-4">
                             <img src="{{asset('assets/images/CSS-white-logo.png')}}" alt="css-logo" class="css-logo">
                         </a>
                             <div class="p-5">
-                                <a href="{{path('app_css_exercices')}}">
+                                <a href="{{path('app_category_exercice', {slug: 'css'} )}}">
                                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Le <span class="text-sky-400">style</span> de votre page web</h5>
                                 </a>
                                 <p class="mb-3 font-normal  text-gray-400">Le langage CSS est utilisé pour styliser et mettre en forme les éléments d'une page web en contrôlant l'apparence, la disposition et les effets visuels.</p>
-                                <a href="{{path('app_css_exercices')}}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <a href="{{path('app_category_exercice', {slug: 'css'} )}}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Commencer
                                     <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -53,15 +53,15 @@
                     </div>  
 
                      <div class="max-w-sm border rounded-lg shadow-md bg-gray-800 border-gray-700">
-                        <a href="{{path('app_js_exercices')}}" class="flex justify-center m-4">
+                        <a href="{{path('app_category_exercice', {slug: 'js'} )}}" class="flex justify-center m-4">
                            <img src="{{asset('assets/images/JavaScript-white-logo.png')}}" alt="js-logo" class="js-logo">
                         </a>
                             <div class="p-5">
-                                <a href="{{path('app_js_exercices')}}">
+                                <a href="{{path('app_category_exercice', {slug: 'js'} )}}">
                                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-white"><span class="text-sky-400">L'interaction</span> avec votre page web</h5>
                                 </a>
                                 <p class="mb-3 font-normal text-gray-400"> Le langage JavaScript est utilisé pour rendre les pages web interactives et dynamiques en ajoutant des fonctionnalités et des comportements tels que des animations...</p>
-                                <a href="{{path('app_js_exercices')}}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <a href="{{path('app_category_exercice', {slug: 'js'} )}}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Commencer
                                     <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
