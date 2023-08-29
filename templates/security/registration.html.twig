@@ -4,12 +4,20 @@
 
 {% block body %}
 
-
-<h1 class="mt-24 text-center text-2xl">Inscription</h1>
-<section class="m-8 flex justify-center">
-
-    <div class="w-96 mb-6 bg-gray-900 p-4 rounded-lg">
-    {{form(form)}}
-    </div>
+<section class="mt-24 flex items-center justify-center">
+  <div class="px-6 py-8 mx-auto lg:py-0">
+      <a href="{{path('app_home')}}" class="flex items-center justify-center mb-6 text-2xl font-semibold text-gray-900 mt-4">
+          <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo">
+          Start404    
+      </a> 
+      <div class="login-form m-4 rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 class="text-xl font-bold text-white md:text-2xl">
+                  Inscription
+              </h1>
+              {{form(form)}}
+          </div>
+      </div>
+  </div>
 </section>
 {% endblock %}

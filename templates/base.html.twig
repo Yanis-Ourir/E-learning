@@ -35,7 +35,7 @@
                 <span class="sr-only">Open user menu</span>
                  {% set userInfo = users.getUserInfo() %}
                
-            {% if userInfo is not null %} 
+            {% if userInfo is not null and userInfo.user_pic is not null %} 
                 <img class="w-8 h-8 rounded-full" src="{{ vich_uploader_asset(userInfo.profilUser, 'imageFile')}}" alt="profil_picture">  
             {% else %}
                 <img class="w-8 h-8 rounded-full" src="{{ asset('assets/images/user-pic.png') }}" alt="profil_picture">
@@ -98,8 +98,7 @@
 
 		{% block body %}{% endblock %}
 
-        <footer id="footer" class="footer">
-		<footer class="bg-gray-900">
+<footer id="footer" class="footer bg-gray-900">
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">

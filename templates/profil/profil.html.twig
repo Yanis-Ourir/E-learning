@@ -29,9 +29,6 @@
 </section>
 
 <section class="flex justify-between m-4">
-
-   
-
     <div class="py-8 px-4 max-w-screen-xl lg:py-16">
         <div class="bg-gray-800 border border-gray-700 rounded-lg p-8 md:p-12 mb-8">
             <a href="#" class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md bg-gray-700 text-blue-400 mb-2">
@@ -82,9 +79,10 @@
             </div>
         </div>
     </div>
-    
+
+{% if toDoList is not null %}
     {% if toDoList.id is null and profil is not null %} 
-       <div class="py-8 px-4 max-w-screen-xl lg:py-16">
+       <div class="mx-auto max-w-screen lg:py-16">
         <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" data-dropdown-placement="bottom" class="text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" type="button">Créer votre liste d'exercice <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                 </svg>
@@ -96,12 +94,11 @@
                 {{form(form)}}
         </div>
     </div> 
-    {% else %}
-    
-        <div class="px-4 max-w-screen-xl text-white text-2xl lg:py-16 bg-gray-900">
-            <div class="flex justify-between">
-            {{toDoList.name}}
-            <button button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" data-dropdown-placement="bottom"><i class="fa-solid fa-file-pen" style="color: #ffffff;"></i></button>
+    {% elseif toDoList.id is not null %}
+        <div class="mx-auto my-12 p-8 rounded-lg text-white text-2xl bg-gray-700">
+            <div class="flex justify-between items-center m-4">
+            <span class="text-sky-400">{{toDoList.name}}</span>
+            <button button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" data-dropdown-placement="bottom"><i class="fa-solid fa-ellipsis" style="color: #ffffff;"></i></button>
             </div>
 
             <div id="dropdownSearch" class="z-10 hidden rounded-lg shadow w-60 bg-gray-700 border-2 border-gray-700">
@@ -115,7 +112,11 @@
         Supprimer votre liste
         </a>
     </div> 
+    
             <ul class="m-4 rounded-lg divide-y divide-gray-700">
+            {% if toDoList.idExercice is empty %} 
+            <p class="text-xl">Vous n'avez pas encore ajouter d'exercice à votre liste</p>
+            {% else %}
                 {% for exercice in toDoList.idExercice %}
                 <li class="pb-3 sm:pb-4">
                     <div class="flex items-center space-x-4">
@@ -129,15 +130,17 @@
                                 {{exercice.statement}}
                             </p>
                         </div>
-                        <div class="inline-flex items-center font-semibold text-white">
-                            {{exercice.difficulty}}
+                        <div class="inline-flex items-center font-semibold">
+                            <a href="{{path('app_delete_exercice_tdl', {id_exercice: exercice.id})}}"><i class="fa-solid fa-delete-left cursor-pointer"></i></a>
                         </div>
                     </div>
                 </li>
                 {% endfor %}
             </ul>
+            {% endif %}
         </div> 
     {% endif %}
+{% endif %}
     
 
 </div>

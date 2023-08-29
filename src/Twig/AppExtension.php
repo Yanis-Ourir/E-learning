@@ -8,7 +8,7 @@ use Twig\Extension\GlobalsInterface;
 use App\Repository\ProfilRepository;
 use App\Class\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class AppExtension extends AbstractExtension
 {
@@ -33,8 +33,8 @@ class AppExtension extends AbstractExtension
     public function getUserInfo() {
         $currentUser = $this->security->getUser();
         $profilUser = $this->profilRepository->findOneBy(['user' => $currentUser->getId()]);
-
-        if ($currentUser->getProfil() !== null && $currentUser->getProfil()->getImageName() !== null) {
+    
+        if ($currentUser->getProfil() !== null) {
           
             return [
                 'profilUser' => $profilUser,

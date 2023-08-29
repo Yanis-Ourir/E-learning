@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ExercicesController extends AbstractController
 {
@@ -21,9 +22,10 @@ class ExercicesController extends AbstractController
 
     /**
      * $slug = ['HTML', 'CSS', 'JS']
-     * Le slug est défini lors du clic de l'utilisateur, il affichera les informations correspondantes.
+     * Le slug est défini lors du clic de l'utilisateur, il affichera les informations correspondantes
      */
     #[Route('/exercices/{slug}', name: 'app_category_exercice')]
+    #[IsGranted("ROLE_USER")]
     public function category(ExerciceRepository $exerciceRepository, ?string $slug = null): Response
     {
         $exercices = $exerciceRepository->findBy(['category' => $slug]);
@@ -57,9 +59,8 @@ class ExercicesController extends AbstractController
     ) : Response {
         $exercice = $exerciceRepository->findOneBy(['id' => $id_exercice]);
         $toDoList = $toDoListRepository->findOneBy(['id' => $id_toDoList]);
-
         $toDoList->addExercice($exercice);
-
+    
         $entityManagerInterface->persist($toDoList);
         $entityManagerInterface->flush();
 

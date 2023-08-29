@@ -150,8 +150,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    
+  
     /**
      * @return Collection<int, Exercice>
      */

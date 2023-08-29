@@ -40,29 +40,25 @@ class ProfilController extends AbstractController
 
         if($profil) {
             $toDoList = $toDoListRepository->findOneBy(['id' => $profil->getToDoList()]);
-
+            // Donc toDoList ne sera jamais null si le profil existe
             if(!$toDoList) {
                 $toDoList = new ToDoList();
                 $profil->setToDoList($toDoList);
                 $entityManagerInterface->persist($profil);   
-               
-            } 
-
+            }
+        }
            
-        
-           }
-           
-            $formList = $this->createForm(ToDoListType::class, $toDoList);
-            $formList->handleRequest($request);
+        $formList = $this->createForm(ToDoListType::class, $toDoList);
+        $formList->handleRequest($request);
 
-                if ($formList->isSubmitted() && $formList->isValid()) {
-                    $toDoList = $formList->getData();
+        if ($formList->isSubmitted() && $formList->isValid()) {
+        $toDoList = $formList->getData();
                 
-                    $entityManagerInterface->persist($toDoList);
-                    $entityManagerInterface->flush();
+        $entityManagerInterface->persist($toDoList);
+        $entityManagerInterface->flush();
 
-                    return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
-                }
+        return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
+        }
           
         
         return $this->render('profil/profil.html.twig', [
@@ -84,10 +80,33 @@ class ProfilController extends AbstractController
     ) : Response {
         $user = $userRepository->find($id);
         $profil = $profilRepository->findOneBy(['user' => $id]);
-        $toDoList = $profil->getToDoList();
+        $toDoList = $toDoListRepository->findOneBy(['id' => $profil->getToDoList()]);
 
+        // On set le to_do_list dans la bdd a null pour éviter le que onCascade=delete supprime tout mon objet profil
+        $profil->setToDoList(null);
+        $entityManagerInterface->persist($profil);
         $entityManagerInterface->remove($toDoList);
         $entityManagerInterface->flush();        
+
+        return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
+    }
+
+    #[Route('/profil/delete/to-do-list/exercice/{id_exercice}', name:'app_delete_exercice_tdl')]
+    public function deleteExerciceInTdl(
+    EntityManagerInterface $entityManagerInterface,
+    ProfilRepository $profilRepository,
+    ToDoListRepository $toDoListRepository,
+    ExerciceRepository $exerciceRepository,
+    ?int $id_exercice = null
+    ) : Response {
+        $user = $this->getUser();
+        $profil = $profilRepository->findOneBy(['user' => $user->getId()]);
+        $toDoList = $toDoListRepository->findOneBy(['id' => $profil->getToDoList()]);
+        $exercice = $exerciceRepository->findOneBy(['id' => $id_exercice]);
+
+        $toDoList->removeExercice($exercice);
+        $entityManagerInterface->flush();
+
 
         return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
     }
@@ -125,6 +144,7 @@ class ProfilController extends AbstractController
 
             return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
         } 
+
         return $this->render('profil/update-profil.html.twig', [
             'form' => $formProfil->createView()
         ]);
