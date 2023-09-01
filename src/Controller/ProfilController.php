@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Entity\ToDoList;
 use App\Form\ProfilType;
 use App\Form\ToDoListType;
+use App\Repository\AchievementRepository;
 use DateTimeImmutable;
 use App\Repository\ExerciceRepository;
 use App\Repository\UserRepository;
@@ -103,10 +104,8 @@ class ProfilController extends AbstractController
         $profil = $profilRepository->findOneBy(['user' => $user->getId()]);
         $toDoList = $toDoListRepository->findOneBy(['id' => $profil->getToDoList()]);
         $exercice = $exerciceRepository->findOneBy(['id' => $id_exercice]);
-
         $toDoList->removeExercice($exercice);
         $entityManagerInterface->flush();
-
 
         return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
     }
@@ -119,6 +118,7 @@ class ProfilController extends AbstractController
     User $currentUser,
     UserRepository $userRepository,
     ProfilRepository $profilRepository,
+    AchievementRepository $achievementRepository,
     ?int $id = null
     ) {
         $user = $userRepository->findOneBy(['id' => $id]);
@@ -128,6 +128,7 @@ class ProfilController extends AbstractController
            $userProfil = new Profil(); 
            $userProfil->setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
            $userProfil->setIdUser($user);
+           $userProfil->addAchievement($achievementRepository->findOneBy(['id' => 5]));
            $userProfil->setScore(0);
         }
         

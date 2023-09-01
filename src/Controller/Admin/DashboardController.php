@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class DashboardController extends AbstractDashboardController
 {
-
+    #[Security("is_granted('ROLE_ADMIN')")]
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AchievementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AchievementRepository::class)]
@@ -21,6 +23,14 @@ class Achievement
 
     #[ORM\Column(length: 255)]
     private ?string $achievement_description = null;
+
+    #[ORM\ManyToMany(targetEntity: Profil::class, mappedBy: 'achievements')]
+    private Collection $profils;
+
+    public function __construct()
+    {
+        $this->profils = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +69,33 @@ class Achievement
     public function setAchievementDescription(string $achievement_description): self
     {
         $this->achievement_description = $achievement_description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Profil>
+     */
+    public function getProfils(): Collection
+    {
+        return $this->profils;
+    }
+
+    public function addProfil(Profil $profil): self
+    {
+        if (!$this->profils->contains($profil)) {
+            $this->profils->add($profil);
+            $profil->addAchievement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProfil(Profil $profil): self
+    {
+        if ($this->profils->removeElement($profil)) {
+            $profil->removeAchievement($this);
+        }
 
         return $this;
     }

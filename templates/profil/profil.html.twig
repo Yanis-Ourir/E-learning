@@ -12,12 +12,16 @@
             <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{asset('assets/images/user-pic.png')}}" >
         {% endif %}
         <h5 class="mb-1 text-xl font-medium text-white">{{ profil is null ? 'User' : profil.getPseudo() }}</h5>
-        <span class="text-sm text-gray-400">Score : {{ profil is null ? '0' : profil.getScore() }}</span>
-        <span class="text-sm text-gray-400">Vos succès :  </span>
-        <ul class="flex w-32">
-            <li><img src="{{asset('assets/images/badge-placeholder.png')}}"></li>
-            <li><img src="{{asset('assets/images/badge-placeholder-2.png')}}"></li>
-            <li><img src="{{asset('assets/images/badge-placeholder-3.png')}}"></li>
+        <span class="text-l text-gray-400">Score : {{ profil is null ? '0' : profil.getScore() }}</span>
+        <span class="text-l text-gray-400">Vos succès :  </span>
+        <ul class="flex w-32 justify-center">
+            {% if profil is not null %}
+                 {% for achievement in profil.getAchievements() %}
+                    <i class="{{ achievement.getAchievementIcon() }}" style="color: #ffffff"></i>
+                 {% endfor %}
+            {% else %}
+                <p class="text-sm text-gray-400">Vous n'avez pas encore de succès...</p>
+            {% endif %}
         </ul>
         <div class="flex mt-4 space-x-3 md:mt-6">
           <div class="flex mt-4 space-x-3 md:mt-6">
