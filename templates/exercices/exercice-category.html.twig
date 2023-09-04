@@ -4,8 +4,8 @@
 
 {% block body %}
 
-<section class="language-introduction mt-16">
-        <a href="https://developer.mozilla.org/fr/docs/Web/{{slug}}" class="flex items-center shadow flex-row w-100 hover:bg-gray-100 border-gray-700 bg-gray-800 hover:bg-gray-700" target="_blank">
+<section class="language-introduction mt-16 border-gray-700 bg-gray-800">
+        <a href="https://developer.mozilla.org/fr/docs/Web/{{slug}}" class="md:flex lg:flex items-center shadow flex-row w-100 hover:bg-gray-100 border-gray-700 bg-gray-800 hover:bg-gray-700" target="_blank">
             
 		{% if slug == 'html' %}
 			<img class="rounded-lg shadow-md bg-gray-800 border-gray-700 p-4 logo-exercice"  src="{{asset('assets/images/HTML-white-logo.png')}}" alt="HTML-logo">
@@ -50,7 +50,7 @@
 						<th scope="col" class="px-6 py-3">
 							Objectifs
 						</th>
-						<th scope="col" class="px-6 py-3">
+						<th scope="col" class="px-6 py-3 hide-table">
 							Difficulté
 						</th>
 
@@ -66,12 +66,12 @@
 								<a href="{{ path('app_repository_exercice', {slugExercice: slug, id: exercice.id}) }}" class="hover:text-blue-500">{{exercice.title}}</a>
 							</th>
 
-							<td class="px-6 py-4">
+							<td class="px-6 py-4 exercice-statement">
 								{{exercice.statement}}
 							</td>
 
-							<td class="px-6 py-4">
-								{{exercice.description}}
+							<td class="px-6 py-4 hide-table">
+								{{exercice.difficulty}}
 							</td>
 
 							<td class="px-6 py-4">
@@ -115,7 +115,7 @@
 // const buttonsToDoList = document.querySelectorAll('.dropDownButton');
 // console.log(buttonsToDoList);
 // let newPath = '';
-// let path = "{{path('add_to-do-list', {id_exercice: 'exercice.id', id_toDoList: 'app.user.profil.toDoList.id'})}}";
+// let path = "{{path('add_to-do-list', {'id_exercice': 'exercice.id', 'id_toDoList': 'app.user.profil.toDoList.id'})}}";
 //   buttonsToDoList.forEach(button => {
 //         button.addEventListener('click', (event) => {
 // 			event.stopPropagation();

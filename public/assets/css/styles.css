@@ -81,4 +81,169 @@ h2 span {
   height: auto;
 }
 
+/** RESPONSIVE **/
+
+@media screen and (max-width: 480px) {
+  .banner {
+    background-color: yellow;
+    display: block;
+    margin-top: 5rem;
+  }
+
+  .image-hero-banner {
+    display: none;
+  }
+
+  .three-languages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .three-languages img {
+    margin-top: 1rem;
+  }
+
+  .objectives {
+    padding: 0.5rem;
+  }
+
+  .objectives p {
+    font-size: 1.3rem;
+  }
+
+  .liste-objectives {
+    padding: 0.5rem;
+  }
+
+  .liste-objectives li {
+    font-size: 1.3rem;
+  }
+
+  .button-tdl {
+    margin-left: 1rem;
+  }
+
+  .profil-parameters {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .language-logo div {
+    margin-top: 1rem;
+  }
+
+  .presentation-code {
+    padding: 1rem;
+  }
+
+  .logo-exercice {
+    margin-left: 10%;
+  }
+
+  .exercice-statement {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .hide-table {
+    display: none;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  .banner {
+    margin-top: 5rem;
+  }
+
+  .image-hero-banner {
+    display: none;
+  }
+
+  .three-languages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .three-languages img {
+    margin-top: 1rem;
+  }
+
+  .objectives {
+    padding: 0.5rem;
+  }
+
+  .objectives p {
+    font-size: 1.3rem;
+  }
+
+  .liste-objectives {
+    padding: 0.5rem;
+  }
+
+  .liste-objectives li {
+    font-size: 1.3rem;
+  }
+
+  .profil-parameters {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .language-logo div {
+    margin-top: 1rem;
+  }
+
+  .presentation-code {
+    padding: 1rem;
+  }
+
+  .logo-exercice {
+    margin-left: 10%;
+  }
+
+  .exercice-statement {
+    font-size: 1rem;
+    padding: 1rem;
+  } 
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px) {
+  .banner {
+    margin-top: 5rem;
+  }
+
+  .three-languages img {
+    margin-top: 1rem;
+  }
+
+  .objectives {
+    padding: 0.5rem;
+  }
+
+  .objectives p {
+    font-size: 1.3rem;
+  }
+
+  .liste-objectives {
+    padding: 0.5rem;
+  }
+
+  .liste-objectives li {
+    font-size: 1.3rem;
+  }
+
+  .profil-parameters {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  
+}
+
 
